@@ -66,6 +66,8 @@ about:
   dev_url: https://github.com/kmax12/gridstatus
 
 extra:
+  skip-lints:
+    - avoid_noarch
   anaconda-services:
       recipe-maintainers:
         - bkreider

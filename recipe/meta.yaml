@@ -14,14 +14,21 @@ source:
 
 build:
   number: 0
-  skip: True # [py<39]
-  script: "{{ PYTHON }} -m pip install --no-deps -vv ."
+
+  # only build noarch on linux64
+  skip: True # [not linux64]
+  noarch: python
+
+  script: "{{ PYTHON }} -m pip install --no-deps -vv . --no-build-isolation"
 
 requirements:
   host:
     - python >=3.9
     - pip
     - poetry
+    - wheel
+  build:
+    - git
   run:
     - python >=3.9
     - requests 

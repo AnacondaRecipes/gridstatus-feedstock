@@ -1,0 +1,65 @@
+{% set name = "gridstatus" %}
+{% set version = "0.27.0" %}
+{% set sha256 = "" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/kmax12/gridstatus.git
+  git_tag: v{{ version }}
+
+  # sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [py<39]
+  script: "{{ PYTHON }} -m pip install --no-deps -vv ."
+
+requirements:
+  host:
+    - python >=3.9
+    - pip
+    - poetry
+  run:
+    - python >=3.9
+    - requests 
+    - pandas >=2.2.1
+    - beautifulsoup4 >=4.8.13
+    - tabulate >=0.9.0
+    - tqdm >=4.64.1
+    - openpyxl >=3.1.0
+    - lxml >=4.9.1,<5.0.0
+    - plotly >=5.11.0
+    - tabula-py
+    - termcolor >=2.2.0
+    - xlrd >=2.0.1
+ 
+test:
+  requires:
+    - python
+    - pip
+  commands:
+    - pip check
+
+about:
+  home: https://github.com/kmax12/gridstatus
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: 'Provides a uniform API for accessing electricity supply, demand, and pricing data'
+
+  description: |
+        gridstatus is a Python library that provides a uniform API for accessing electricity 
+        supply, demand, and pricing data for the major Independent System Operators (ISOs) in the 
+        United States. It currently supports data from CAISO, SPP, ISONE, MISO, Ercot, NYISO, and PJM.
+
+  doc_url: https://docs.gridstatus.io/
+  dev_url: https://github.com/kmax12/gridstatus
+
+extra:
+  anaconda-services:
+      recipe-maintainers:
+        - bkreider
+

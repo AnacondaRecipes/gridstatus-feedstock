@@ -47,6 +47,8 @@ test:
   requires:
     - python
     - pip
+  imports:
+    - gridstatus
   commands:
     - pip check
 
